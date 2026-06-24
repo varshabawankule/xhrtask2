@@ -12,3 +12,17 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.card-header h3{
+    height: 40px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.highlight-card{
+    border: 3px solid green !important;
+    box-shadow: 0 0 15px rgba(0,128,0,0.5);
+    transition: all .5s ease;
+}

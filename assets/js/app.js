@@ -12,12 +12,20 @@ const userIdControl = document.getElementById('userId');
 const addbtn = document.getElementById('addbtn');
 const updatebtn = document.getElementById('updatebtn');
 const postForm= document.getElementById('postForm')
+const spinner= document.getElementById('spinner')
+
+
+function tooltip(){
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+}
 
 function snackBar(msg, icon){
     Swal.fire({
         title: msg,
         icon: icon,
-        timer: 3000
+        timer: 2000
 
 
     })
@@ -33,7 +41,7 @@ arr.forEach(post => {
     result+= `
     <div class="col-md-4 mb-3" id=${post.id}>
         <div class="card h-100">
-            <div class="card-header">
+            <div class="card-header" data-toggle="tooltip" data-placement="top" title="${post.title}">
                 <h3>${post.title}</h3>
             </div>
             <div class="card-body">
@@ -54,7 +62,7 @@ arr.forEach(post => {
     })
 
     postContainer.innerHTML= result;
-
+tooltip()
 
 }
 
@@ -114,7 +122,8 @@ userId : userIdControl.value ,
         col.id = res.id;
         col.innerHTML= `
          <div class="card h-100">
-            <div class="card-header">
+            <div class="card-header" data-toggle="tooltip" data-placement="top" title="${postObj.title}">
+  
                 <h3>${postObj.title}</h3>
             </div>
             <div class="card-body">
@@ -132,6 +141,7 @@ userId : userIdControl.value ,
 postContainer.prepend(col);
 postForm.reset()
     spinner.classList.add('d-none')
+    tooltip()
 
 
     }else{
@@ -167,6 +177,11 @@ xhr.onload= function(){
         addbtn.classList.add('d-none')
         updatebtn.classList.remove('d-none')
     spinner.classList.add('d-none')
+
+    postForm.scrollIntoView({
+    behavior: "smooth",
+    block: 'start'
+})
 
     }else{
 
@@ -210,6 +225,18 @@ xhr.onload= function(){
         postForm.reset()
         snackBar(`Post with id ${UPDATE_ID} updated successfully`, `success`)
     spinner.classList.add('d-none')
+
+col.scrollIntoView({
+    behavior: "smooth",
+    block: 'center'
+})
+
+
+col.classList.add('highlight-card');
+
+setTimeout(() => {
+    col.classList.remove('highlight-card');
+}, 4000);
 
         addbtn.classList.remove('d-none')
         updatebtn.classList.add('d-none')
