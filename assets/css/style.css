@@ -26,3 +26,27 @@ body{
     box-shadow: 0 0 15px rgba(0,128,0,0.5);
     transition: all .5s ease;
 }
+
+
+
+
+.card{
+    background-color: rgb(170, 131, 206);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all .4s ease;
+}
+
+.card-header, .card-footer{
+    background-color: aliceblue;
+
+}
+body{
+    background-color:rgb(96, 33, 158);
+}
+.card:is(:hover, :active, :focus  ){
+    transform: scale(1.04);
+
+}
+
+
